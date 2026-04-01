@@ -112,13 +112,8 @@ class NowPlaying(Renderer):
         time.sleep(2.5)
         self.album_art = load_image_url(self.track.album_art_url,
                                         self.coords['album_art']['size'])
-        self.background = get_background_color(self.album_art)
-
-        if is_background_light(self.background):
-            self.primary_color = Color.DARK_PRIMARY
-            self.secondary_color = Color.DARK_SECONDARY
-        else:
-            self.primary_color = Color.LIGHT_PRIMARY
-            self.secondary_color = Color.LIGHT_SECONDARY
+        self.background = Color.BLACK
+        self.primary_color = (30, 215, 96)   # Spotify green
+        self.secondary_color = (30, 215, 96) # Spotify green
 
         logging.info(f'Now Playing: {self.track}')
