@@ -101,6 +101,22 @@ sudo python3 main.py --led-gpio-mapping="adafruit-hat" --led-slowdown-gpio=3
 Modify and include [flags](#Flags) as needed for your particular setup. Running as root is necessary in order for the 
 matrix to render. Privileges are dropped after initialization.
 
+### Customizations (axkent fork)
+This fork has been configured for a **64×32 RGB LED matrix** using an Adafruit RGB Matrix Bonnet. The following changes were made:
+
+**64×32 execution command:**
+```sh
+sudo python3 main.py --led-gpio-mapping="adafruit-hat" --led-slowdown-gpio=3 --led-rows=32 --led-cols=64
+```
+
+**Color scheme:** Modified `renderer/now_playing.py` to use a static black background with Spotify green text (`#1ED760`) instead of the default album-art-matched background. Album art display is unchanged.
+
+**numpy install fix:** The default `install.sh` may fail to build numpy from source on some Pi configurations. Install it via apt first:
+```sh
+sudo apt install python3-numpy -y
+grep -v numpy requirements.txt | sudo pip3 install -r /dev/stdin --break-system-packages
+```
+
 ### Debug
 If you are experiencing issues, enable debug messages by appending the `--debug` flag to your execution command, logs 
 are written to the `now-playing.log` file.
